@@ -23,47 +23,49 @@
 
   <link rel="stylesheet" href="css/heart.css" />
 
-
 <script type="text/javascript">
-  //handle Back button
-function onDeviceReady() {
-   
-    document.addEventListener("backbutton", onBackKeyDown, false);
-    console.log('Device ready - register onBackKeyDown()');                
+function onLoad()
+{
+document.addEventListener("deviceready",onDeviceReady,false);
 }
-
-document.addEventListener("deviceready", onDeviceReady, false);
-
-/*function onBackKeyDown() {
-    var active_page = $( ":mobile-pagecontainer" ).pagecontainer( "getActivePage" );
-    var id =active_page.page().attr('id');
-    if (id==='sear_nearby_mapp') {
-      alert("asdadewwwwwwwwwwwww");
-      $.mobile.changepage($('#sear_nearby_mapp'),{transition:"none", changeHash: true, reverse: false});
-return false;
-    }
-}*/
-
-document.addEventListener('deviceready', function() {
-    alert('deviceready');
-    var exitApp = false, intval = setInterval(function (){exitApp = false;}, 1000);
-    document.addEventListener("backbutton", function (e){
-        e.preventDefault();
-        if (exitApp) {
-            clearInterval(intval) 
-            (navigator.app && navigator.app.exitApp()) || (device && device.exitApp())
-        }
-        else {
-            exitApp = true
-            history.back(1);
-        } 
-    }, false);
-}, false);
-
+function onDeviceReady()
+{
+alert("Device Ready!!");
+document.addEventListener("pause", onPause, false);
+document.addEventListener("resume", onResume, false);
+document.addEventListener("backbutton", onBackKeyDown, false);
+document.addEventListener("menubutton", onMenuKeyDown, false);
+document.addEventListener("volumedownbutton", onVolumeDownKeyDown, false);
+document.addEventListener("volumeupbutton", onVolumeUpKeyDown, false);
+}
+function onPause()
+{
+alert("pause Event Accured");
+}
+function onResume()
+{
+alert("Resume Event Accoured");
+}
+alert("back button pressed");
+function onBackKeyDown(e) {
+  e.preventDefault();
+}
+function onMenuKeyDown()
+{
+alert("menubutton pressed");
+}
+function onVolumeDownKeyDown()
+{
+alert("Volume Down button pressed");
+}
+function onVolumeUpKeyDown()
+{
+alert("Volume Up button pressed");
+}
 </script>
 
 	</head>
-	<body>
+	<body onload="onLoad()">
 
 <!--Page one starts-->
 
