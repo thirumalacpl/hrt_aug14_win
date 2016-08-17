@@ -19,7 +19,7 @@
    	<script src="js/jquery-ui.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
 <!-- <script src="js/jquery.min.js"></script> -->
-
+<script type="text/javascript" src="cordova.js"></script>
 
   <link rel="stylesheet" href="css/heart.css" />
 
@@ -63,13 +63,37 @@ function onVolumeUpKeyDown()
 alert("Volume Up button pressed");
 }
 </script>
+<script type="text/javascript">
+    //handle Back button
+function onDeviceReady() {
+    // Register the event listener
+    document.addEventListener("backbutton", onBackKeyDown, false);
+    console.log('Device ready - register onBackKeyDown()');                
+}
 
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onBackKeyDown() {
+    var active_page = $( ":mobile-pagecontainer" ).pagecontainer( "getActivePage" );
+    var id =active_page.page().attr('id');
+    if (id==='pageone') {
+        if (confirm('Do you want to exit the app?')==true){
+            navigator.app.exitApp();
+        }
+    }
+    else{
+    navigator.app.backHistory();
+    }
+}
+//**
+</script>
 	</head>
 	<body onload="onLoad()">
 
 <!--Page one starts-->
 
        <div data-role="page"  id="pageone" class="main-bg">
+       <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/condition.js"></script>
 			<nd2-include data-src=".//examples/fragments/panel.left.html"></nd2-include>
 
